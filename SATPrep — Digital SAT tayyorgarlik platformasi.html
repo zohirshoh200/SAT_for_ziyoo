@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="uz"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SATPrep — Digital SAT tayyorgarlik platformasi</title>
+<style>
+:root{--bg:#f3f5fa;--card:#fff;--tx:#12203b;--mu:#5a6580;--pr:#1f4fd8;--pr2:#e5ecfd;--ok:#17874a;--bad:#c42d3a;--bd:#d8deec;--hd:#12203b;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d1220;--card:#161d30;--tx:#e8ecf6;--mu:#98a2ba;--pr:#6c96ff;--pr2:#1c294c;--ok:#45c37b;--bad:#ff6b77;--bd:#29324e;--hd:#0a0f1c}}
+:root[data-theme="dark"]{--bg:#0d1220;--card:#161d30;--tx:#e8ecf6;--mu:#98a2ba;--pr:#6c96ff;--pr2:#1c294c;--ok:#45c37b;--bad:#ff6b77;--bd:#29324e;--hd:#0a0f1c}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+header{background:var(--hd);color:#fff;padding:10px 14px}
+header b{font-size:20px}header b span{color:#7fa4ff}
+nav{display:flex;gap:6px;overflow-x:auto;margin-top:8px}
+nav button{flex:none;background:#ffffff1a;color:#fff;border:0;border-radius:99px;padding:6px 14px;font:inherit;font-size:14px}
+nav button.on{background:#fff;color:#12203b;font-weight:600}
+#app{max-width:760px;margin:0 auto;padding:14px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:16px;margin-bottom:12px}
+h1{font-size:28px;line-height:1.2;margin:4px 0 8px}h2{font-size:19px;margin:2px 0 10px}.mu{color:var(--mu);font-size:14px}
+button{font:inherit;color:inherit;cursor:pointer}
+.btn{display:block;width:100%;padding:13px;border-radius:12px;border:1px solid var(--pr);background:var(--pr);color:#fff;font-weight:600;margin-top:10px}
+.btn.o{background:transparent;color:var(--pr)}.btn:disabled{opacity:.4}
+.mode{display:block;width:100%;text-align:left;background:var(--card);border:1.5px solid var(--bd);border-radius:14px;padding:14px;margin-bottom:10px}
+.mode b{display:block;font-size:17px}.mode:active{border-color:var(--pr)}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px}
+.tm{font-variant-numeric:tabular-nums;font-weight:700;background:var(--pr2);color:var(--pr);padding:4px 12px;border-radius:99px}
+.row{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px}
+.g{border:1px solid var(--bd);background:none;border-radius:8px;padding:4px 10px;font-size:14px}.g.on{background:#f5b300;color:#222;border-color:#f5b300}
+.q{white-space:pre-wrap;font-size:17px;margin:8px 0 14px}
+.ch{display:flex;gap:10px;align-items:flex-start;width:100%;text-align:left;background:var(--card);border:1.5px solid var(--bd);border-radius:12px;padding:11px 12px;margin-bottom:8px}
+.ch i{font-style:normal;flex:none;width:26px;height:26px;border-radius:50%;border:1.5px solid var(--bd);display:grid;place-items:center;font-size:13px;font-weight:700}
+.ch.sel{border-color:var(--pr);background:var(--pr2)}.ch.sel i{background:var(--pr);color:#fff;border-color:var(--pr)}
+.ch.good{border-color:var(--ok);background:#1b8a4b22}.ch.wrong{border-color:var(--bad);background:#c62f3b22}
+.in{width:100%;padding:12px;font:inherit;font-size:18px;border-radius:10px;border:1.5px solid var(--bd);background:var(--card);color:var(--tx)}
+.nav{display:flex;gap:8px}.nav .btn{margin-top:0}
+.grid{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0}
+.n{width:38px;height:38px;border-radius:9px;border:1.5px solid var(--bd);background:var(--card);font-weight:600}
+.n.dn{background:var(--pr2);border-color:var(--pr)}.n.fl{box-shadow:inset 0 -4px #f5b300}.n.cur{outline:2px solid var(--pr);outline-offset:1px}
+.sc{display:flex;gap:10px;flex-wrap:wrap}.sc div{flex:1;min-width:120px;background:var(--pr2);border-radius:12px;padding:12px;text-align:center;font-size:14px}
+.sc b{display:block;font-size:28px;color:var(--pr)}
+.ok{color:var(--ok)}.bad{color:var(--bad)}
+details{border-top:1px solid var(--bd);padding:8px 0}summary{cursor:pointer;font-weight:600}
+.ex{background:var(--pr2);border-radius:10px;padding:8px 10px;margin-top:8px;font-size:14px}
+.bl{display:flex;justify-content:space-between;font-size:14px;margin-top:8px}.bar{height:8px;background:var(--pr2);border-radius:9px;overflow:hidden}.bar i{display:block;height:100%;background:var(--pr)}
+ul{padding-left:20px;margin:6px 0}.kb{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:8px}.kb button{padding:10px;border-radius:9px;border:1px solid var(--bd);background:var(--card);font-size:17px}#cd{font-size:22px;min-height:48px}li{margin:4px 0}table{width:100%;border-collapse:collapse;font-size:14px}td,th{border-bottom:1px solid var(--bd);padding:6px;text-align:left}
+</style></head><body>
+<header><b>SAT<span>Prep</span></b><nav id="nav"></nav></header>
+<div id="app"></div>
+<script>
+const CFG={rw:16,rwMin:19,m:16,mMin:25};
+const D={cs:"Craft and Structure",ii:"Information and Ideas",sec:"Standard English Conventions",ei:"Expression of Ideas",alg:"Algebra",adv:"Advanced Math",psda:"Problem-Solving and Data Analysis",geo:"Geometry and Trigonometry"};
+const DD={cs:"Lug‘at va so‘z ma’nosi",ii:"Asosiy g‘oya va dalillar",sec:"Grammatika, tinish belgilari",ei:"Bog‘lovchi so‘zlar, mantiq",alg:"Chiziqli tenglamalar, sistemalar",adv:"Kvadrat, eksponensial, funksiyalar",psda:"Foiz, nisbat, o‘rtacha",geo:"Uchburchak, to‘rtburchak, trigonometriya"};
+const RWD=["cs","ii","sec","ei"],MD=["alg","adv","psda","geo"];
+const RW=[
+{d:"cs",q:"Despite the critics’ harsh reviews, the novelist remained ______, continuing to write with full confidence in her own vision.",c:["ambivalent","undeterred","reluctant","indifferent"],a:1,e:"“Undeterred” — tanqidga qaramay davom etdi, ma’nosi mos."},
+{d:"cs",q:"The researchers’ findings were ______: other laboratories could reproduce the results exactly using the same method.",c:["dubious","replicable","ephemeral","anecdotal"],a:1,e:"Natijani qayta olish mumkin = replicable."},
+{d:"cs",q:"The mayor’s speech was deliberately ______, avoiding any firm commitment that could later be held against her.",c:["explicit","vague","emphatic","candid"],a:1,e:"Aniq va’dadan qochish = vague."},
+{d:"cs",q:"Because the data set was so ______, the team could draw conclusions about only a handful of cases.",c:["exhaustive","sparse","redundant","volatile"],a:1,e:"Faqat bir nechta holat = sparse (kam, siyrak)."},
+{d:"cs",q:"The scientist’s explanation was so ______ that even beginners grasped the concept at once.",c:["convoluted","lucid","cryptic","ornate"],a:1,e:"Boshlovchilar ham tushundi — demak lucid (tushunarli)."},
+{d:"cs",q:"Though the town was once ______, with factories on every block, it now relies mainly on tourism.",c:["bustling","tranquil","obscure","frugal"],a:0,e:"Zavodlar ko‘p edi — bustling (gavjum, jonli)."},
+{d:"ii",q:"Octopuses can change skin color in a fraction of a second, yet they are colorblind. Researchers suspect that light-sensitive proteins in the skin itself may help them match their surroundings.\n\nWhich choice best states the main idea of the text?",c:["Octopuses rely on excellent vision to camouflage themselves.","Octopuses may sense light through their skin, which could explain their camouflage despite colorblindness.","Colorblind animals rarely use camouflage.","Octopus skin changes color slowly."],a:1,e:"Asosiy g‘oya — teri orqali yorug‘likni sezish gipotezasi."},
+{d:"ii",q:"A student claims that urban green spaces lower summer temperatures. Which finding would most directly support this claim?",c:["Parks are most popular on weekends.","Neighborhoods with more trees averaged 3°C cooler on summer afternoons than similar neighborhoods with fewer trees.","Cities with many parks tend to have higher rents.","Trees absorb carbon dioxide."],a:1,e:"Faqat (b) harorat farqini bevosita ko‘rsatadi."},
+{d:"ii",q:"Unlike most plants, the Venus flytrap obtains some nutrients by digesting insects. This adaptation lets it thrive in soil that lacks nitrogen.\n\nWhich choice best describes the function of the second sentence?",c:["It explains why the adaptation is beneficial.","It contradicts the first sentence.","It introduces a different species.","It criticizes earlier research."],a:0,e:"Ikkinchi gap moslashuvning foydasini tushuntiradi."},
+{d:"ii",q:"A historian argues that the printing press accelerated the spread of literacy in Europe. Which finding, if true, would most weaken this claim?",c:["Literacy rose no faster in regions with printing presses than in regions without them.","Printed books were more expensive than handwritten ones at first.","Many early printers also sold paper.","Some presses printed religious texts."],a:0,e:"Raqobatdosh hududlarda farq yo‘qligi da’voni zaiflashtiradi."},
+{d:"sec",q:"The collection of rare manuscripts, which date back to the twelfth century, ______ displayed in the main hall.",c:["are","is","were","have been"],a:1,e:"Ega — “collection” (birlik), shuning uchun “is”."},
+{d:"sec",q:"The botanist collected three kinds of samples__ ferns, mosses, and lichens.",c:[":",";",",","and"],a:0,e:"To‘liq gapdan keyin ro‘yxat ikki nuqta (:) bilan kiradi."},
+{d:"sec",q:"Neither the manager nor the employees ______ aware of the schedule change.",c:["was","were","is","has been"],a:1,e:"“Neither…nor” da fe’l eng yaqin egaga mos: employees → were."},
+{d:"sec",q:"Marie Curie, ______ in 1867 in Warsaw, later moved to Paris to study physics.",c:["born","was born","who born","she was born"],a:0,e:"Qo‘shimcha ibora: “born in 1867…”."},
+{d:"sec",q:"The committee announced ______ decision on Friday.",c:["it’s","its","their’s","it is"],a:1,e:"Egalik olmoshi “its” apostrofsiz yoziladi."},
+{d:"sec",q:"The lab’s new microscope, ______ cost over two million dollars, can image single atoms.",c:["that","which","what","it"],a:1,e:"Vergul bilan ajratilgan qo‘shimcha gapda “which” ishlatiladi."},
+{d:"sec",q:"The team of engineers ______ working on a new bridge design.",c:["are","is","were","have"],a:1,e:"Ega — “team” (birlik) → is."},
+{d:"ei",q:"Solar panels have become far cheaper over the past decade. ______, adoption in rural regions remains low because of limited access to financing.",c:["Similarly","Therefore","Nevertheless","For example"],a:2,e:"Ikkinchi gap ziddiyatni bildiradi: Nevertheless."},
+{d:"ei",q:"The bakery’s sales dropped sharply in January. ______ the owner was not alarmed, having predicted a post-holiday slump.",c:["Consequently,","However,","Similarly,","In addition,"],a:1,e:"Pasayishga qaramay xavotirlanmadi — ziddiyat: However."},
+{d:"ei",q:"In the 1990s, many cities introduced bike lanes. ______ cycling rates rose steadily in the following years.",c:["As a result,","In contrast,","Previously,","Regardless,"],a:0,e:"Sabab → natija: As a result."},
+{d:"ei",q:"Most mammals give birth to live young. ______ the platypus lays eggs.",c:["Likewise,","In contrast,","Therefore,","Specifically,"],a:1,e:"Ko‘pchilikdan farqi — In contrast."},
+{d:"cs",q:"The author’s tone is best described as ______, as she acknowledges the policy’s flaws while still recommending it.",c:["dismissive","measured","exuberant","hostile"],a:1,e:"Kamchiliklarni tan olib, baribir tavsiya qilish — measured (mu’tadil)."},
+{d:"cs",q:"The engineer’s grasp of fluid dynamics allowed her to redesign the pump in a single afternoon.\n\nAs used in the sentence, “grasp” most nearly means",c:["grip","understanding","reach","hold"],a:1,e:"Bu yerda “grasp” — tushunish, bilim."},
+{d:"cs",q:"Although the committee’s proposal seemed ______ at first, closer inspection revealed numerous practical obstacles.",c:["feasible","obsolete","trivial","hostile"],a:0,e:"“Although” ziddiyat bildiradi: avval amalga oshirsa bo‘ladigandek (feasible) tuyuldi."},
+{d:"cs",q:"The museum’s curator was known for her ______ attention to detail; she once spent a week verifying a single date.",c:["cursory","meticulous","sporadic","casual"],a:1,e:"Bir sanani bir hafta tekshirish = meticulous (o‘ta puxta)."},
+{d:"ii",q:"In a study of 200 office workers, those who took a ten-minute walk after lunch reported higher afternoon focus than those who stayed at their desks. The researchers note that participants chose their own group.\n\nWhich choice best describes a limitation of the study?",c:["Group assignment was not random, so other factors may explain the difference.","The walks were too short to matter.","Only office workers were asked about lunch.","Focus cannot be reported by participants."],a:0,e:"Guruhni o‘zlari tanlagani uchun boshqa omillar natijaga ta’sir qilgan bo‘lishi mumkin."},
+{d:"ii",q:"Many cities have replaced older streetlights with LEDs, which use about half the electricity. Yet one city’s lighting bill rose after the switch, likely because the city ______\n\nWhich choice most logically completes the text?",c:["installed far more lights than it had before.","chose lights that last longer.","reduced nighttime lighting hours.","pays lower rates for electricity."],a:0,e:"Hisob oshishi uchun yorug‘lik soni ko‘paygan bo‘lishi kerak."},
+{d:"ii",q:"Museum visitors by day: Monday 120; Tuesday 95; Wednesday 140; Thursday 180.\n\nWhich statement is supported by the data?",c:["Thursday had the most visitors of the four days.","Visitors increased every day.","Tuesday had the most visitors.","Wednesday had fewer visitors than Monday."],a:0,e:"180 — eng katta qiymat (Thursday). Seshanba pasayish bo‘lgani uchun (b) noto‘g‘ri."},
+{d:"ii",q:"Researchers sequenced the genomes of 14 cave beetle species and found that all of them share a mutation in a gene involved in eye development.\n\nWhich conclusion is best supported by the text?",c:["The mutation may be linked to differences in the beetles’ eye development.","The mutation appears in all beetle species worldwide.","Cave beetles evolved from a single ancestor five million years ago.","Eye development depends on only one gene."],a:0,e:"Faqat (a) matndan to‘g‘ridan-to‘g‘ri kelib chiqadi; qolganlari matndan tashqari da’vo."},
+{d:"sec",q:"Each of the new laptops ______ a one-year warranty.",c:["include","includes","are including","have included"],a:1,e:"“Each” — birlik, shuning uchun “includes”."},
+{d:"sec",q:"The festival, which began in 1985__ attracts visitors from more than forty countries.",c:[",",";",":","—but"],a:0,e:"“which…” qo‘shimcha gapi ikki tomondan vergul bilan ajratiladi."},
+{d:"sec",q:"By the time the ambulance arrived, the crowd ______ dispersed.",c:["has","had","have","will have"],a:1,e:"O‘tgan voqeadan oldingi harakat — Past Perfect: had dispersed."},
+{d:"sec",q:"She wanted to learn three languages: Spanish, French, and ______.",c:["German","to learn German","that she learn German","German is"],a:0,e:"Parallel tuzilma: ro‘yxatdagi barcha elementlar ot bo‘lishi kerak."},
+{d:"ei",q:"A student is writing about coral reefs and wants to emphasize their economic value. Which choice best accomplishes this goal?",c:["Coral reefs, found in warm shallow seas, are made of calcium carbonate.","Reefs support fisheries and tourism that generate billions of dollars worldwide each year.","Some large reefs are visible from space.","Coral polyps are tiny animals."],a:1,e:"Iqtisodiy qiymat — baliqchilik va turizm daromadi."},
+{d:"ei",q:"The new library opened in March. ______ it has hosted more than forty events.",c:["Since then,","Instead,","On the other hand,","Otherwise,"],a:0,e:"Vaqt ketma-ketligi: Since then."},
+{d:"ei",q:"Maya wanted to study abroad. ______ she applied for three scholarships.",c:["Nevertheless,","Accordingly,","Conversely,","For instance,"],a:1,e:"Istak → harakat (natija): Accordingly."},
+{d:"ei",q:"Which choice most effectively combines the sentences?\n\nThe river flooded. The town was evacuated.",c:["The river flooded; consequently, the town was evacuated.","The river flooded, the town was evacuated.","The river flooded the town was evacuated.","The river flooded and, the town was evacuated."],a:0,e:"(b) — comma splice, (c) — run-on, (d) — noto‘g‘ri vergul."}
+];
+const r=(a,b)=>a+Math.floor(Math.random()*(b-a+1));
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=r(0,i);[a[i],a[j]]=[a[j],a[i]]}return a};
+function mk(q,ans,ds,e){let s=[ans];ds.forEach(d=>{if(!s.includes(d))s.push(d)});while(s.length<4){const v=ans+r(2,9)*(Math.random()<.5?-1:1);if(!s.includes(v))s.push(v)}s=shuffle(s.slice(0,4));return{q,c:s.map(String),a:s.indexOf(ans),e,val:ans}}
+function mkS(q,c,e){const s=shuffle(c.map((t,i)=>({t,i})));return{q,c:s.map(x=>x.t),a:s.findIndex(x=>x.i==0),e}}
+const G={
+alg:[
+()=>{const a=r(2,9),x=r(2,12),b=r(1,20),c=a*x+b;return mk(`If ${a}x + ${b} = ${c}, what is the value of x?`,x,[x+1,x-1,c-b],`${a}x = ${c-b}, shuning uchun x = ${x}.`)},
+()=>{const x=r(3,15),y=r(1,x-1);return mk(`x + y = ${x+y} and x − y = ${x-y}. What is the value of x?`,x,[y,x+1,x-1],`Tenglamalarni qo‘shamiz: 2x = ${2*x}, x = ${x}.`)},
+()=>{const m=r(1,6)*(Math.random()<.5?-1:1),x1=r(0,4),x2=x1+r(1,4),y1=r(-5,5),y2=y1+m*(x2-x1);return mk(`A line passes through the points (${x1}, ${y1}) and (${x2}, ${y2}). What is the slope of the line?`,m,[-m,m+1,m-1],`Slope = (${y2} − ${y1}) / (${x2} − ${x1}) = ${m}.`)},
+()=>{const a=r(3,9),b=r(2,6),m=r(5,20);return mk(`A taxi company charges a flat fee of $${a} plus $${b} per mile. What is the total cost, in dollars, of a ${m}-mile ride?`,a+b*m,[a*m+b,(a+b)*m,a+b+m],`Narx = ${a} + ${b}·${m} = ${a+b*m}.`)},
+()=>{const a=r(2,6),x=r(2,9),t=r(1,a),b=r(1,9);return mk(`What is the greatest integer x for which ${a}x + ${b} < ${a*x+b+t}?`,x,[x+1,x-1,x+2],`${a}x < ${a*x+t}, ya’ni x < ${x} + ${t}/${a}. Eng katta butun son ${x}.`)}],
+adv:[
+()=>{const a=r(1,6),b=r(1,6);return mk(`What is the sum of the solutions to (x − ${a})(x + ${b}) = 0?`,a-b,[a+b,b-a,a*b],`Yechimlar: x = ${a} va x = ${-b}. Yig‘indi ${a-b}.`)},
+()=>{const P=r(2,9)*5;return mk(`The function f is defined by f(t) = ${P} · 2^t. What is the value of f(3)?`,P*8,[P*6,P*9,P*16],`2³ = 8, demak f(3) = ${P*8}.`)},
+()=>{const a=r(2,5),b=r(1,9),k=r(2,5);return mk(`If f(x) = ${a}x² + ${b}, what is the value of f(${k})?`,a*k*k+b,[(a*k)**2+b,a*k+b,a*k*k-b],`${a} × ${k*k} + ${b} = ${a*k*k+b}.`)},
+()=>{const a=r(1,9),b=r(2,9);return mk(`What is the greater solution of (x − ${a})² = ${b*b}?`,a+b,[a-b,b,a*b],`x − ${a} = ±${b}, katta yechim x = ${a+b}.`)},
+()=>{const a=r(2,9),b=r(2,9);return mk(`If 2^${a} · 2^${b} = 2^x, what is the value of x?`,a+b,[a*b,a-b,2*(a+b)],`Darajalar qo‘shiladi: ${a} + ${b} = ${a+b}.`)}],
+psda:[
+()=>{const p=[10,20,25,40,50][r(0,4)],n=r(2,12)*20,v=n*p/100;return mk(`What is ${p}% of ${n}?`,v,[n-v,v+10,v-10],`${n} × ${p/100} = ${v}.`)},
+()=>{const m=r(10,30),n=[0,0,0,0].map(()=>r(m-6,m+6)),f=5*m-n.reduce((s,v)=>s+v,0);return mk(`The mean of five numbers is ${m}. Four of the numbers are ${n.join(", ")}. What is the fifth number?`,f,[m,f+5,f-5],`Yig‘indi = 5 × ${m} = ${5*m}; qolgani ${f}.`)},
+()=>{const p=[10,20,25,50][r(0,3)],o=r(2,10)*20,n=o*(100+p)/100;return mk(`The price of an item increased from $${o} to $${n}. By what percent did the price increase?`,p,[p+5,p-5,n-o],`(${n} − ${o}) / ${o} = ${p/100} → ${p}%.`)},
+()=>{const a=r(2,5),b=a+r(1,3),k=r(2,6);return mk(`The ratio of boys to girls in a club is ${a}:${b}. If the club has ${k*(a+b)} members, how many are girls?`,k*b,[k*a,a+b,k*(a+b)-a],`Bir qism = ${k*(a+b)} / ${a+b} = ${k}; qizlar ${b} × ${k} = ${k*b}.`)},
+()=>{const s=shuffle([r(2,9),r(10,19),r(20,29),r(30,39),r(40,49)]),o=s.slice().sort((p,q)=>p-q);return mk(`A data set contains the values ${s.join(", ")}. What is the median of the data set?`,o[2],[s[2]===o[2]?o[1]:s[2],o[1],o[3]],`Tartiblaymiz: ${o.join(", ")}. Median o‘rtadagi qiymat: ${o[2]}.`)}],
+geo:[
+()=>{const t=[[3,4,5],[5,12,13],[8,15,17],[7,24,25]][r(0,3)],k=r(1,3),[a,b,c]=t.map(v=>v*k);return mk(`A right triangle has legs of length ${a} and ${b}. What is the length of its hypotenuse?`,c,[a+b,c+1,c-1],`Pifagor: √(${a}² + ${b}²) = ${c}.`)},
+()=>{const l=r(6,15),w=r(2,l-1);return mk(`A rectangle has a perimeter of ${2*(l+w)} and a length of ${l}. What is its area?`,l*w,[l*l,(l+w)*2,l+w],`Eni = ${l+w} − ${l} = ${w}; yuza = ${l} × ${w} = ${l*w}.`)},
+()=>{const a=r(30,80),b=r(30,80);return mk(`Two angles of a triangle measure ${a}° and ${b}°. What is the measure, in degrees, of the third angle?`,180-a-b,[360-a-b,90-a,a+b],`180 − ${a} − ${b} = ${180-a-b}.`)},
+()=>{const [x,y,z]=[[3,4,5],[5,12,13],[8,15,17]][r(0,2)];return mkS(`In right triangle ABC, the right angle is at B, AB = ${x}, BC = ${y}, and AC = ${z}. What is sin A?`,[`${y}/${z}`,`${x}/${z}`,`${y}/${x}`,`${z}/${y}`],`sin A = qarshi katet / gipotenuza = BC / AC = ${y}/${z}.`)},
+()=>{const k=r(2,9);return mk(`The area of a circle is ${k*k}π. What is the radius of the circle?`,k,[k*k,2*k,k+1],`πr² = ${k*k}π → r² = ${k*k}, r = ${k}.`)}]
+};
+const sh=q=>{const o=shuffle(q.c.map((t,i)=>({t,i})));return{...q,c:o.map(x=>x.t),a:o.findIndex(x=>x.i===q.a)}};
+function mathQs(n,doms,sp){return Array.from({length:n},(_,i)=>{const d=doms[i%doms.length],q=G[d][r(0,G[d].length-1)]();q.d=d;if(sp&&q.val!==undefined&&Math.random()<.25)q.sp=1;return q})}
+const fmt=s=>String(Math.floor(s/60)).padStart(2,"0")+":"+String(s%60).padStart(2,"0");
+const $=s=>document.querySelector(s),app=$("#app");
+let S={view:"home"},T;
+const cur=()=>S.mods[S.mi];
+const has=(m,i)=>m.ans[i]!=null&&m.ans[i]!=="";
+const isOk=(q,a)=>q.sp?(a!=null&&a!==""&&Math.abs(parseFloat(a)-q.val)<1e-6):a===q.a;
+const sc=([c,n])=>n?Math.round((200+600*c/n)/10)*10:0;
+const ld=()=>{try{return JSON.parse(localStorage.getItem("satH")||"[]")}catch(e){return[]}};
+const sv=h=>{try{localStorage.setItem("satH",JSON.stringify(h.slice(-30)))}catch(e){}};
+function tab(v){clearInterval(T);S={view:v};render()}
+function start(k,d){
+ const M=[];
+ if(k=="p"){const rw=RWD.includes(d);M.push({n:D[d]+" — mashq",k:rw?"r":"m",pr:1,time:0,qs:rw?shuffle(RW.filter(q=>q.d==d)).slice(0,8).map(sh):mathQs(8,[d],0)})}
+ else{
+  if(k!="m"){const b=shuffle(RW);[0,1].forEach(i=>M.push({n:"Reading and Writing — "+(i+1)+"-modul",k:"r",time:CFG.rwMin*60,qs:b.slice(i*CFG.rw,(i+1)*CFG.rw).map(sh)}))}
+  if(k!="r")[0,1].forEach(i=>M.push({n:"Math — "+(i+1)+"-modul",k:"m",time:CFG.mMin*60,qs:mathQs(CFG.m,MD,1)}))
+ }
+ M.forEach(m=>{m.ans={};m.fl={}});S={view:"quiz",k,mods:M,mi:0,qi:0,ask:0};begin();
+}
+function begin(){clearInterval(T);S.left=cur().time;if(S.left)T=setInterval(tick,1000);render()}
+function tick(){S.left--;const e=$("#tm");if(e)e.textContent=fmt(Math.max(S.left,0));if(S.left<=0)endMod()}
+function calc(){const det={},sec={r:[0,0],m:[0,0]};S.mods.forEach(m=>m.qs.forEach((q,i)=>{const o=isOk(q,m.ans[i]);det[q.d]=det[q.d]||[0,0];det[q.d][1]++;sec[m.k][1]++;if(o){det[q.d][0]++;sec[m.k][0]++}}));return{det,sec}}
+function endMod(){clearInterval(T);
+ if(S.mi<S.mods.length-1)S.view="brk";
+ else{S.R=calc();const h=ld();h.push({t:Date.now(),k:S.k,r:sc(S.R.sec.r),m:sc(S.R.sec.m),det:S.R.det});sv(h);S.view="res"}
+ render()}
+function nextMod(){S.mi++;S.qi=0;S.ask=0;S.view="quiz";begin()}
+const choose=i=>{const m=cur();if(m.pr&&has(m,S.qi))return;m.ans[S.qi]=i;render()};
+const spv=v=>{cur().ans[S.qi]=v};
+const flag=()=>{const m=cur();m.fl[S.qi]=!m.fl[S.qi];render()};
+const go=i=>{S.qi=i;S.ask=0;render()};
+const ask=v=>{S.ask=v;render()};
+const bar=(d,v)=>{const p=Math.round(100*v[0]/v[1]);return `<div class="bl"><span>${D[d]}</span><span>${p}% (${v[0]}/${v[1]})</span></div><div class="bar"><i style="width:${p}%"></i></div>`};
+const CL={s:"0",a:null,o:null,f:0};
+const ap=(a,o,b)=>o=="+"?a+b:o=="−"?a-b:o=="×"?a*b:o=="÷"?a/b:b;
+function kp(k){
+ if("0123456789.".includes(k)){CL.s=(CL.f||CL.s=="0")&&k!="."?k:CL.s+k;CL.f=0}
+ else if(k=="C"){CL.s="0";CL.a=null;CL.o=null;CL.f=0}
+ else if(k=="±")CL.s=String(-parseFloat(CL.s));
+ else if(k=="√")CL.s=String(+Math.sqrt(parseFloat(CL.s)).toFixed(8));
+ else if(k=="x²"){const v=parseFloat(CL.s);CL.s=String(+(v*v).toFixed(8))}
+ else if(k=="π"){CL.s="3.14159265";CL.f=1}
+ else{const b=parseFloat(CL.s);CL.a=CL.o&&!CL.f?ap(CL.a,CL.o,b):b;CL.s=String(+CL.a.toFixed(8));CL.o=k=="="?null:k;CL.f=1}
+ const e=$("#cd");if(e)e.textContent=CL.s}
+const calcUI=()=>`<div class="card"><div id="cd" class="in" style="text-align:right">${CL.s}</div><div class="kb">${["C","±","√","÷","7","8","9","×","4","5","6","−","1","2","3","+","0",".","π","=","x²"].map(k=>`<button onclick="kp('${k}')">${k}</button>`).join("")}</div></div>`;
+function home(){return `<div class="card"><h1>Digital SAT’ga to‘liq tayyorgarlik</h1>
+<p class="mu">Rasmiy Digital SAT tuzilmasi: 2 ta bo‘lim, har biri 2 ta modul; Math’da test va “student-produced response” (javobni o‘zingiz yozasiz) savollari; mavzular bo‘yicha mashq va taraqqiyot kuzatuvi.</p></div>
+<button class="mode" onclick="start('f')"><b>To‘liq mock test</b><span class="mu">Reading and Writing (2 modul) + Math (2 modul), taymer bilan. Hajmi rasmiy testning taxminan 65 foizi (64 savol).</span></button>
+<button class="mode" onclick="start('r')"><b>Faqat Reading and Writing</b><span class="mu">2 modul · ${CFG.rw} tadan savol · ${CFG.rwMin} daqiqadan</span></button>
+<button class="mode" onclick="start('m')"><b>Faqat Math</b><span class="mu">2 modul · ${CFG.m} tadan savol · ${CFG.mMin} daqiqadan · har gal yangi sonlar</span></button>
+<button class="mode" onclick="tab('prac')"><b>Mavzular bo‘yicha mashq</b><span class="mu">8 ta SAT mavzusi, har javobdan keyin darhol izoh</span></button>
+<div class="card mu">Savollar rasmiy SAT uslubi va mavzulari asosida yozilgan original mashqlardir (College Board savollaridan ko‘chirilmagan). Rasmiy namunalar uchun College Board’ning Bluebook ilovasidagi bepul testlaridan ham foydalaning.</div>`}
+function prac(){const g=(t,a)=>`<div class="card"><h2>${t}</h2>${a.map(d=>`<button class="mode" onclick="start('p','${d}')"><b>${D[d]}</b><span class="mu">${DD[d]}</span></button>`).join("")}</div>`;
+return g("Reading and Writing",RWD)+g("Math",MD)}
+function guide(){return `<div class="card"><h2>Digital SAT tuzilmasi</h2><table>
+<tr><th>Bo‘lim</th><th>Savol</th><th>Vaqt</th></tr>
+<tr><td>Reading and Writing (2 modul)</td><td>54</td><td>64 daq.</td></tr>
+<tr><td>Math (2 modul)</td><td>44</td><td>70 daq.</td></tr>
+<tr><td><b>Jami</b></td><td><b>98</b></td><td><b>2 s 14 daq.</b></td></tr></table>
+<ul><li>Ball: 400–1600 (har bo‘lim 200–800).</li><li>Test adaptiv: 2-modul qiyinligi 1-modul natijasiga bog‘liq.</li><li>Math’da taxminan 25% savol javobni o‘zingiz yozishni talab qiladi.</li><li>Math’da kalkulyator (Desmos) ichiga o‘rnatilgan.</li></ul></div>
+<div class="card"><h2>Maslahatlar</h2><ul><li>Reading and Writing: har savol uchun ~1 daqiqa; qiyinini belgilab (⚑) keyinga qoldiring.</li><li>Noto‘g‘ri variantlarni birin-ketin yo‘qoting.</li><li>Xato qilingan mavzularni “Natijalar” sahifasida ko‘ring va shu mavzuda mashq qiling.</li><li>Javobsiz qoldirmang: SAT’da xato uchun ball ayirilmaydi.</li></ul></div>
+<div class="card"><h2>Mavzular</h2><ul>${Object.keys(D).map(d=>`<li><b>${D[d]}</b> — ${DD[d]}</li>`).join("")}</ul></div>`}
+function hist(){const h=ld().reverse(),agg={};h.forEach(x=>Object.entries(x.det).forEach(([d,v])=>{agg[d]=agg[d]||[0,0];agg[d][0]+=v[0];agg[d][1]+=v[1]}));
+return `<div class="card"><h2>Mavzular bo‘yicha o‘zlashtirish</h2>${Object.keys(agg).length?Object.keys(agg).map(d=>bar(d,agg[d])).join(""):`<p class="mu">Hali natija yo‘q. Birinchi testni ishlang.</p>`}</div>
+<div class="card"><h2>Oxirgi urinishlar</h2>${h.slice(0,10).map(x=>`<div class="row"><span>${new Date(x.t).toLocaleDateString()} · ${{f:"To‘liq",r:"RW",m:"Math",p:"Mashq"}[x.k]}</span><b>${x.k=="p"?Object.values(x.det).map(v=>v[0]+"/"+v[1]).join(""):(x.r&&x.m?x.r+x.m:x.r||x.m)}</b></div>`).join("")||`<p class="mu">—</p>`}</div>
+<p class="mu">Natijalar faqat shu qurilma brauzerida saqlanadi.</p>`}
+function quiz(){
+ const m=cur(),q=m.qs[S.qi],a=m.ans[S.qi],last=S.qi==m.qs.length-1,un=m.qs.filter((_,i)=>!has(m,i)).length,lock=m.pr&&has(m,S.qi);
+ const body=q.sp?`<input class="in" inputmode="decimal" placeholder="Javobni yozing" value="${a??""}" oninput="spv(this.value)"><p class="mu">Javob raqam bo‘lishi kerak.</p>`
+ :q.c.map((t,i)=>{let c=a===i?"sel":"";if(lock){if(i==q.a)c="good";else if(a===i)c="wrong"}return `<button class="ch ${c}" onclick="choose(${i})"><i>${"ABCD"[i]}</i><span>${t}</span></button>`}).join("");
+ return `<div class="top"><b>${m.n}</b>${m.pr?"":`<span class="tm" id="tm">${fmt(S.left)}</span>`}<button class="g" onclick="tab('home')">Chiqish</button></div>
+<div class="card"><div class="row"><span class="mu">Savol ${S.qi+1} / ${m.qs.length} · ${D[q.d]}</span>${m.pr?"":`<button class="g ${m.fl[S.qi]?"on":""}" onclick="flag()">⚑ Belgilash</button>`}</div>
+<p class="q">${q.q}</p>${body}${lock?`<div class="ex"><b class="${isOk(q,a)?"ok":"bad"}">${isOk(q,a)?"To‘g‘ri!":"Noto‘g‘ri."}</b> ${q.e}</div>`:""}</div>
+${m.k=="m"?`<button class="btn o" style="margin:0 0 10px" onclick="S.calc=!S.calc;render()">🖩 Kalkulyator</button>${S.calc?calcUI():""}`:""}<div class="nav"><button class="btn o" ${S.qi?"":"disabled"} onclick="go(${S.qi-1})">← Oldingi</button>
+${last?`<button class="btn" onclick="ask(1)">Yakunlash</button>`:`<button class="btn" onclick="go(${S.qi+1})">Keyingi →</button>`}</div>
+<div class="grid">${m.qs.map((_,i)=>`<button class="n ${i==S.qi?"cur":""} ${has(m,i)?"dn":""} ${m.fl[i]?"fl":""}" onclick="go(${i})">${i+1}</button>`).join("")}</div>
+${S.ask?`<div class="card"><b>Yakunlaysizmi?</b><p class="mu">Javob berilmagan savollar: ${un}. Keyin qaytib bo‘lmaydi.</p><button class="btn" onclick="endMod()">Ha, yakunlash</button><button class="btn o" onclick="ask(0)">Qaytish</button></div>`:`<button class="btn o" onclick="ask(1)">Modulni yakunlash</button>`}`
+}
+function brk(){return `<div class="card"><h2>${cur().n} yakunlandi</h2><p class="mu">Qisqa tanaffus qiling. Tayyor bo‘lganingizda keyingi modulni boshlang — taymer shu zahoti ishga tushadi.</p><button class="btn" onclick="nextMod()">${S.mods[S.mi+1].n}ni boshlash</button></div>`}
+function res(){
+ const {det,sec}=S.R,both=sec.r[1]&&sec.m[1];
+ return `<div class="card"><h2>Natija</h2><div class="sc">${both?`<div><b>${sc(sec.r)+sc(sec.m)}</b>Taxminiy jami (400–1600)</div>`:""}
+${sec.r[1]?`<div><b>${sc(sec.r)}</b>Reading and Writing<br>${sec.r[0]}/${sec.r[1]} to‘g‘ri</div>`:""}${sec.m[1]?`<div><b>${sc(sec.m)}</b>Math<br>${sec.m[0]}/${sec.m[1]} to‘g‘ri</div>`:""}</div>
+<p class="mu">Ball taxminiy hisoblanadi: rasmiy SAT shkalasi adaptiv va murakkabroq.</p></div>
+<div class="card"><h2>Mavzular bo‘yicha</h2>${Object.keys(det).map(d=>bar(d,det[d])).join("")}</div>
+<button class="btn" onclick="tab('prac')">Zaif mavzuda mashq qilish</button><button class="btn o" onclick="start('${S.k}'${S.k=="p"?",'"+S.mods[0].qs[0].d+"'":""})">Qayta boshlash (yangi savollar)</button>
+${S.mods.map(m=>`<div class="card"><h2>${m.n} — tahlil</h2>${m.qs.map((q,i)=>{const o=isOk(q,m.ans[i]),ya=has(m,i)?(q.sp?m.ans[i]:"ABCD"[m.ans[i]]+") "+q.c[m.ans[i]]):"—";return `<details><summary class="${o?"ok":"bad"}">${o?"✓":"✗"} Savol ${i+1} · ${D[q.d]}</summary><p class="q">${q.q}</p>
+<div>Sizning javobingiz: <b class="${o?"ok":"bad"}">${ya}</b></div><div>To‘g‘ri javob: <b class="ok">${q.sp?q.val:"ABCD"[q.a]+") "+q.c[q.a]}</b></div><div class="ex">${q.e}</div></details>`}).join("")}</div>`).join("")}`
+}
+function render(){
+ const T2={home:["home","Bosh sahifa"],prac:["prac","Mashq"],guide:["guide","Qo‘llanma"],hist:["hist","Natijalar"]};
+ $("#nav").innerHTML=Object.entries(T2).map(([k,[v,t]])=>`<button class="${S.view==k?"on":""}" onclick="tab('${v}')">${t}</button>`).join("");
+ app.innerHTML={home,prac,guide,hist,quiz,brk,res}[S.view]();window.scrollTo(0,0)}
+render();
+</script></body></html>
